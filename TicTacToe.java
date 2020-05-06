@@ -35,8 +35,8 @@ public class TicTacToe extends JFrame{
 			center.add(button[j]);
 		}
 		
-		img_1 = new ImageIcon("image\\X.png");
-		img_2 = new ImageIcon("image\\O.png");
+		img_1 = new ImageIcon("X.png");
+		img_2 = new ImageIcon("O.png");
 
 		for(int i=0; i<9; i++){		
 			final int n = i;
