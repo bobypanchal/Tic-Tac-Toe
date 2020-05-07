@@ -35,8 +35,7 @@ public class TicTacToe extends JFrame{
 			center.add(button[j]);
 		}
 		
-		img_1 = new ImageIcon("X.png");
-		img_2 = new ImageIcon("O.png");
+		initilizeGame(0);
 
 		for(int i=0; i<9; i++){		
 			final int n = i;
@@ -48,20 +47,29 @@ public class TicTacToe extends JFrame{
 		}
 		reset.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				for(int i=0; i<9; i++){
-					button[i].setIcon(null);
-					button[i].setEnabled(true);
-					a[i] = 0;
-					player = 1;
-					win.setText("GAME IS ON");
-					top.setBackground(null);
-				}
+				initilizeGame(1);
 			}
 		});
-		
+
 		setVisible(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
+
+	public void initilizeGame(int check){
+		img_1 = new ImageIcon("image\\X.png");
+		img_2 = new ImageIcon("image\\O.png");
+		
+		player = 1;
+		win.setText("GAME IS ON");
+		top.setBackground(null);
+		if(check == 1)
+			for(int i=0; i<9; i++){
+				button[i].setIcon(null);
+				button[i].setEnabled(true);
+				a[i] = 0;
+			}
+	}
+
 
 	public void change(int i) {
 		if(player == 1) {
@@ -96,6 +104,14 @@ public class TicTacToe extends JFrame{
 				win.setText("PLAYER 2 IS WIN");
 				top.setBackground(Color.GREEN);
 				return 2;
+			}
+		}
+		for(int i=0; i<9; i++){
+			if(button[i].isEnabled())
+				return 0;
+			else if(i == 8){
+				win.setText("GAME IS DROW!");
+				top.setBackground(Color.RED);
 			}
 		}
 		return 0;
